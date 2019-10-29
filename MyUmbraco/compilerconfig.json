@@ -1,0 +1,12 @@
+﻿[
+  {
+    "outputFile": "App_Themes/MyUmbraco/css/mu.min.css",
+    "inputFile": "dev/css/mu.scss",
+    "minify": {
+      "enabled": true
+    },
+    "options": {
+      "sourceMap": true
+    }
+  }
+]

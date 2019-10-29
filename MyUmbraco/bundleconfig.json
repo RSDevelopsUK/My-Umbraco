@@ -1,0 +1,9 @@
+[
+  {
+    "outputFileName": "App_Themes/WNTI/js/wnti.min.js",
+    "inputFiles": [
+      "dev/js/scripts.js",
+      "dev/js/wnti.js"
+    ]
+  }
+]
