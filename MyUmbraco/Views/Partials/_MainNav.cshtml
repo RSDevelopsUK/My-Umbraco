@@ -1,0 +1,41 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Web
+
+
+@*
+    This snippet displays a list of links of the pages immediately under the top-most page in the content tree.
+    This is the home page for a standard website.
+    It also highlights the current active page/section in the navigation with the CSS class "current".
+*@
+
+@{
+  var selection = Model.Root().Children.Where(x => x.IsVisible()).ToArray();
+}
+
+
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="~/App_Themes/MyUmbraco/img/logo.png" alt="MyUmbraco" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+
+        @if (selection.Length > 0)
+        {
+          foreach (var item in selection)
+          {
+            <li class="nav-item @(item.IsAncestorOrSelf(Model) ? "active" : null)">
+              <a class="nav-link" href="@item.Url">@item.Name <span class="sr-only">(current)</span></a>
+            </li>
+          }
+        }
+        @Html.Partial("_LanguageSwitcher")
+        @Html.Partial("_MemberAuthenticationStatus")
+      </ul>
+    </div>
+  </div>
+</nav>

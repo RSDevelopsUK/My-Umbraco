@@ -1,0 +1,58 @@
+﻿@inherits UmbracoViewPage
+
+@using System
+@using System.Globalization
+@using System.Web
+@using System.Xml
+
+
+@functions{
+  public static string Country(string code, string culture)
+  {
+    var locale = new CultureInfo(culture).TwoLetterISOLanguageName.ToLower();
+    var strLocalXmlFile = HttpContext.Current.Server.MapPath("/data/localisation/" + locale + ".xml");
+    var xdoc = new XmlDocument();
+    xdoc.Load(strLocalXmlFile);
+    var node = "//language[@type='" + code + "']";
+    var xn = xdoc.SelectSingleNode(node);
+    return xn?.InnerText ?? string.Empty;
+  }
+}
+
+@helper currentCultureMarkup()
+{
+  <span class="flag-icon flag-icon-@Model.GetCultureFromDomains().Substring(3, 2)"></span>
+  @Country(Model.GetCultureFromDomains().Substring(0, 2), Model.GetCultureFromDomains())
+  @(Model.GetCultureFromDomains().Contains("US") ? " (US)" : "")
+  @(Model.GetCultureFromDomains().Contains("GB") ? " (GB)" : "")
+}
+
+<li class="nav-item dropdown move-to-top" id="language-dropdown">
+  @if (Model.Cultures.Count == 1)
+  {
+    <span class="nav-link">
+      @currentCultureMarkup()
+    </span>
+  }
+  else
+  {
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      @currentCultureMarkup()
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      @foreach (var (culture, infos) in Model.Cultures)
+      {
+        var currentCulture = Model.GetCultureFromDomains();
+        if (currentCulture.ToLower() != culture)
+        {
+          <a class="dropdown-item" href="@Model.Url(culture)">
+            <span class="flag-icon flag-icon-@infos.Culture.Substring(3, 2)"></span>
+            @Country(infos.Culture.Substring(0, 2), Model.GetCultureFromDomains())
+            @(infos.Culture.Contains("us") ? "(US)" : "")
+            @(infos.Culture.Contains("gb") ? "(GB)" : "")
+          </a>
+        }
+      }
+    </div>
+  }
+</li>

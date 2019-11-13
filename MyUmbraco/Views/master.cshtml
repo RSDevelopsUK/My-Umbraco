@@ -1,0 +1,27 @@
+﻿@using ClientDependency.Core.Mvc
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = null;
+}
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+  <link href="~/App_Themes/MyUmbraco/css/mu.min.css" rel="stylesheet" />
+  <script src="~/App_Themes/MyUmbraco/js/mu.min.js"></script>
+  @Html.RenderJsHere()
+  <title>MyUmbraco</title>
+</head>
+<body class="d-flex flex-column h-100">
+  @Html.Partial("~/Views/Partials/_MainNav.cshtml")
+    @RenderBody()
+  <footer class="footer mt-auto py-2 border-top">
+    <div class="container">
+      <span class="text-muted">Created and maintained by <a target="_blank" href="http://www.rsdevelops.co.uk">Rob Shaw</a></span>
+    </div>
+  </footer>
+</body>
+</html>

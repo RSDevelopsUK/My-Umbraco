@@ -1,0 +1,39 @@
+﻿
+@inherits UmbracoViewPage<BlogPostHighFiveViewModel>
+@using Umbraco.Core.Composing
+@using MyUmbraco.ViewModels
+
+@{
+  var member = Membership.GetUser();
+  var memberId = 0;
+  if (member != null)
+  {
+    var memberInfo = Current.Services.MemberService.GetByEmail(member.Email);
+    memberId = memberInfo.Id;
+  }
+  var userHasHighFived = Convert.ToBoolean(Html.Action("HandleUserHasHighFived", "BlogPostHighFive", new { Model.BlogPostId, memberId }).ToString());
+  var highFiveCount = Convert.ToInt32(Html.Action("HandleGetHighFiveCount", "BlogPostHighFive", new { Model.BlogPostId }).ToString());
+  var highFiveStyle = userHasHighFived ? " high-fived" : "";
+  var classes = $"btn btn-link p-0{highFiveStyle}";
+  Model.MemberId = memberId;
+}
+<div id="formOuter-@Model.BlogPostId">
+  @using (Ajax.BeginForm("HandleHighFiveComment", "BlogPostHighFive", null, new AjaxOptions
+  {
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = $"formOuter-{Model.BlogPostId}"
+  }, new { id = $"form-{Model.BlogPostId}", @class = "m-auto" }))
+  {
+  <ul class="list-inline d-block m-auto">
+    <li class="list-inline-item m-0">
+      <span class="h1 align-middle text-primary">@highFiveCount</span>
+    </li>
+    <li class="list-inline-item">
+      <button type="submit" class="high-five @classes use-ajax" data-form="form-@Model.BlogPostId"></button>
+    </li>
+  </ul>
+    @Html.HiddenFor(m => Model.BlogPostId)
+    @Html.HiddenFor(m => Model.MemberId)
+  }
+</div>

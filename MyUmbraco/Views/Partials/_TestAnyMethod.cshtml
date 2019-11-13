@@ -1,0 +1,17 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
+@using (Ajax.BeginForm("ContainsAny", "Test", null, new AjaxOptions
+{
+  HttpMethod = "POST",
+  InsertionMode = InsertionMode.Replace,
+  UpdateTargetId = $"formOuter-test-any-method"
+}, new { id = $"form-test-any-method", @class = "m-auto" }))
+{
+  <button type="submit" class="btn btn-primary use-ajax" data-form="form-test-any-method"></button>
+
+  @Html.TextBox("source", "gocompare")
+  @Html.TextBox("values", "go")
+  @Html.TextBox("values", "compare")
+  @Html.Hidden("values", "compared")
+
+}

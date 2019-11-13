@@ -1,0 +1,18 @@
+﻿@using System
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<dynamic>
+
+@{
+  var imgId = Model.value.imageId != null ? Convert.ToInt32(Model.value.imageId) : 0;
+  var image = Umbraco.Media(imgId);
+}
+
+<header class="bg-image-full mb-5" style="background-image: url('@image.Url');">
+
+  <div class="container h-100 position-relative">
+    <div class="h-100 w-100 text-white d-flex align-items-center justify-content-center flex-column py-5">
+      @Html.Raw(Model.value.heroText)
+    </div>
+  </div>
+
+</header>
+<div id="section-image"></div>

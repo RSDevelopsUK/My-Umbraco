@@ -4,12 +4,117 @@
 
 // Custom Start
 
-// Custom End
+html {
+  scroll-behavior: smooth;
+}
 
+// Hero Image / Video
+header {
+  &.bg-image-full {
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: transparent;
+    background-size: cover;
+    height: auto;
+
+    &.bg-top {
+      background-position: top center;
+    }
+  }
+
+  &.video {
+    position: relative;
+    background-color: black;
+    height: 45vh;
+    min-height: 45vh;
+    width: 100%;
+    overflow: hidden;
+
+    video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: 0;
+      -ms-transform: translateX(-50%) translateY(-50%);
+      -moz-transform: translateX(-50%) translateY(-50%);
+      -webkit-transform: translateX(-50%) translateY(-50%);
+      transform: translateX(-50%) translateY(-50%);
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+      opacity: 0.5;
+      z-index: 1;
+    }
+  }
+}
+.bg-top{
+  header{
+    background-position:top center;
+  }
+}
+
+// Blog
+.blog-comment {
+  white-space: pre-line;
+}
+
+// Helpers
+.cover {
+  background-size: cover !important;
+}
+
+.contain {
+  background-size: contain !important;
+}
+
+// Alerts
+#alert-wrapper {
+  position: fixed;
+  top: 13px;
+  width: 100%;
+  left: 0;
+}
+
+// High Fives
+.high-five {
+  width: 60px;
+  height: 60px;
+  background: url('/App_Themes/MyUmbraco/img/high-five.png') no-repeat center center;
+
+  &.high-fived {
+    background-image: url('/App_Themes/MyUmbraco/img/high-five-active.png');
+  }
+}
+
+// File submit
+#avatar-label {
+  span {
+    display: block;
+    overflow: hidden;
+    width:80%;
+    text-overflow:ellipsis;
+  }
+}
+
+// Custom End
 //min-width or GREATER
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
-
 }
 
 // Medium devices (tablets, 768px and up)
@@ -66,3 +171,250 @@ html {
     font-size: 1.6rem;
   }
 }*/
+
+$color_1: white;
+$color_2: #57a64a;
+$color_3: #4892b2;
+$color_4: #d57b4d;
+$color_5: hsl(40, 90%, 60%);
+$color_6: #e90;
+$color_7: red;
+$font_family_1: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+/* PrismJS 1.17.1
+https://prismjs.com/download.html#themes=prism-dark&languages=markup+css+clike+javascript+csharp+aspnet+json+sql+scss+sass */
+/**
+ * prism.js Dark theme for JavaScript, CSS and HTML
+ * Based on the slides of the talk “/Reg(exp){2}lained/”
+ * @author Lea Verou
+ */
+/* Code blocks */
+/* Inline code */
+code[class*="language-"] {
+  color: $color_1;
+  background: none;
+  text-shadow: 0 -.1em .2em black;
+  font-family: $font_family_1;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+pre {
+  position: relative;
+
+  button.copy-code {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+}
+pre[class*="language-"] {
+  color: $color_1;
+  background: none;
+  text-shadow: 0 -.1em .2em black;
+  font-family: $font_family_1;
+  font-size: 1em;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  background: #1e1e1e;
+  padding: 1em;
+  margin: .5em 0;
+  overflow: auto;
+  border: .3em solid #333333;
+  border-radius: .5em;
+  box-shadow: 1px 1px .5em black inset;
+
+  &:not(pre) {
+    > code[class*="language-"] {
+      background: hsl(30, 20%, 25%);
+      padding: .15em .2em .05em;
+      border-radius: .3em;
+      border: .13em solid hsl(30, 20%, 40%);
+      box-shadow: 1px 1px .3em -.1em black inset;
+      white-space: normal;
+    }
+  }
+}
+
+.token.comment {
+  color: $color_2;
+}
+
+.token.prolog {
+  color: $color_2;
+}
+
+.token.doctype {
+  color: $color_2;
+}
+
+.token.cdata {
+  color: $color_2;
+}
+
+.token.punctuation {
+  opacity: .8;
+  color:#FFF;
+}
+.token.class-name {
+  color: #4ec9b0;
+}
+.token.class-name {
+  + .token.punctuation, + .token.punctuation {
+    + .token.class-name {
+      color: #89c79c;
+    }
+  }
+}
+.token.punctuation {
+  + .token.class-name {
+    color: #89c79c;
+  }
+}
+
+
+  .namespace {
+    opacity: .7;
+  }
+
+  .token.property {
+    color: $color_3;
+  }
+
+  .token.tag {
+    color: $color_3;
+  }
+
+  .token.boolean {
+    color: $color_3;
+  }
+
+  .token.number {
+    color: $color_3;
+  }
+
+  .token.constant {
+    color: $color_3;
+  }
+
+  .token.symbol {
+    color: $color_3;
+  }
+
+  .token.selector {
+    color: $color_4;
+  }
+
+  .token.attr-name {
+    color: $color_4;
+  }
+
+  .token.string {
+    color: $color_4;
+  }
+
+  .token.char {
+    color: $color_4;
+  }
+
+  .token.builtin {
+    color: $color_4;
+  }
+
+  .token.inserted {
+    color: $color_4;
+  }
+
+  .token.operator {
+    color: $white;
+  }
+
+  .token.entity {
+    color: $color_5;
+    cursor: help;
+  }
+
+  .token.url {
+    color: $color_5;
+  }
+
+  .language-css {
+    .token.string {
+      color: $color_5;
+    }
+  }
+
+  .style {
+    .token.string {
+      color: $color_5;
+    }
+  }
+
+  .token.variable {
+    color: $color_5;
+  }
+
+  .token.atrule {
+    color: $color_3;
+  }
+
+  .token.attr-value {
+    color: $color_3;
+  }
+
+  .token.keyword {
+    color: $color_3;
+  }
+
+  .token.regex {
+    color: $color_6;
+  }
+
+  .token.important {
+    color: $color_6;
+    font-weight: bold;
+  }
+
+  .token.bold {
+    font-weight: bold;
+  }
+
+  .token.italic {
+    font-style: italic;
+  }
+
+  .token.deleted {
+    color: $color_7;
+  }
+
+  @media print {
+    code[class*="language-"] {
+      text-shadow: none;
+    }
+
+    pre[class*="language-"] {
+      text-shadow: none;
+    }
+  }

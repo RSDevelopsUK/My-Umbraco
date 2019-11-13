@@ -1,9 +1,9 @@
 [
   {
-    "outputFileName": "App_Themes/WNTI/js/wnti.min.js",
+    "outputFileName": "App_Themes/MyUmbraco/js/mu.min.js",
     "inputFiles": [
       "dev/js/scripts.js",
-      "dev/js/wnti.js"
+      "dev/js/mu.js"
     ]
   }
 ]

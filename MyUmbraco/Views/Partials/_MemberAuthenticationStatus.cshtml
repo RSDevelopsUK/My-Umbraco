@@ -1,0 +1,43 @@
+﻿
+@inherits UmbracoViewPage
+@using System.Globalization
+@using System.Web.Mvc.Html
+@using Umbraco.Web
+@using Umbraco.Web.Models
+@using Umbraco.Web.Controllers
+
+@{
+  var locale = new CultureInfo(Model.GetCultureFromDomains().Substring(3, 2)).TwoLetterISOLanguageName.ToLower();
+  var loginStatusModel = Members.GetCurrentLoginStatus();
+  var user = Members.GetCurrentMember();
+  var firstName = user?.GetProperty("FirstName").GetValue();
+  var logoutModel = new PostRedirectModel {RedirectUrl = $"/{Model.GetCultureFromDomains().Substring(3,2).ToLower()}"};
+}
+
+@if (loginStatusModel.IsLoggedIn)
+{
+  <li class="nav-item dropdown move-to-top">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      @Umbraco.GetDictionaryValue("Hello") @firstName
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/@Model.GetCultureFromDomains().Substring(3, 2).ToLower()/profile">Profile</a>
+      <div class="dropdown-divider"></div>
+      @using (Html.BeginUmbracoForm<UmbLoginStatusController>("HandleLogout", null, new { @class = "mb-0" }))
+      {
+        <fieldset>
+          <button class="dropdown-item">Logout</button>
+        </fieldset>
+        @Html.HiddenFor(m => logoutModel.RedirectUrl)
+      }
+    </div>
+  </li>
+}
+else
+{
+  <li class="nav-item">
+    <a href="/@locale/login" class="nav-link">
+      Sign in | Sign up
+    </a>
+  </li>
+}

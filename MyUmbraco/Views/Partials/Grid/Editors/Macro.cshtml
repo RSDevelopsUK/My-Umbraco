@@ -1,17 +1,31 @@
 ﻿@inherits UmbracoViewPage<dynamic>
-@using Umbraco.Web.Templates
 
 
 @if (Model.value != null)
 {
-    string macroAlias = Model.value.macroAlias.ToString();
-    ViewDataDictionary parameters = new ViewDataDictionary();
-    foreach (dynamic mpd in Model.value.macroParamsDictionary)
-    {
-        parameters.Add(mpd.Name, mpd.Value);
-    }
-
+  string macroAlias = Model.value.macroAlias.ToString();
+  ViewDataDictionary parameters = new ViewDataDictionary();
+  foreach (dynamic mpd in Model.value.macroParamsDictionary)
+  {
+    parameters.Add(mpd.Name, mpd.Value);
+  }
+  if (macroAlias == "CodeSnippet")
+  {
     <text>
-        @Umbraco.RenderMacro(macroAlias, parameters)
+      @{
+        var code = new object();
+        var test = parameters.TryGetValue("Code", out code);
+        code = Html.Raw(HttpUtility.HtmlDecode(code.ToString()));
+        parameters["Code"] = code;
+      }
+      @Umbraco.RenderMacro(macroAlias, parameters)
     </text>
+  }
+  else
+  {
+    <text>
+      @Umbraco.RenderMacro(macroAlias, parameters)
+    </text>
+  }
+  
 }

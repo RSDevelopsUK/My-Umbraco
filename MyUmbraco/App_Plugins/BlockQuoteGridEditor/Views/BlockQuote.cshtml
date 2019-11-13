@@ -1,0 +1,16 @@
+﻿@using System
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<dynamic>
+
+<blockquote class="blockquote">
+  <p class="mb-0 p-3 rounded bg-light">@Html.Raw(Model.value.quote)</p>
+  @if (!string.IsNullOrEmpty(Model.value.quoteSourceText.ToString()))
+  {
+  <footer class="blockquote-footer p-2 text-right">
+    @Model.value.quoteSourceText
+    @if (!string.IsNullOrEmpty(Model.value.quoteSourceLink.ToString()))
+    {
+      <cite title="Source Title"><a href="@Model.value.quoteSourceLink" target="_blank">@Model.value.quoteSourceLinkText</a></cite>
+    }
+  </footer>
+  }
+</blockquote>

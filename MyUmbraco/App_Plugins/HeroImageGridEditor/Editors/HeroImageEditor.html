@@ -1,0 +1,27 @@
+﻿<div ng-controller="MyUmbraco.HeroImageGridEditor.Controller">
+    
+  <div style="padding:20px;">
+    <div class="option text-center">
+      <span><strong>Hero Image</strong></span>
+      <div class="image" ng-if="image">
+        <img ng-src="{{imageUrl}}" alt="" />
+        <br />
+        <a href="#" class="btn btn-primary" style="margin: 10px 0;" ng-click="selectImage()" prevent-default>Select Image</a>
+      </div>
+      <div class="image" ng-if="!image">
+        <a href="#" class="usky-editor-placeholder" ng-click="selectImage()" prevent-default>
+          <div style="padding-top: 40px; text-align: center;">
+            <i class="icon icon-picture" style="font-size: 22px;"></i><br />
+            Select image
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <label class="option w-100" style="min-height:200px;">
+      <span><strong>Hero Text</strong></span><br />
+      <span unique-id="control.$uniqueId" value="control.value.heroText" grid-rte configuration="rteconfig"></span>
+    </label>
+  </div>
+
+</div>

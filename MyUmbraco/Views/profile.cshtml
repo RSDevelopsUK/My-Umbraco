@@ -1,0 +1,16 @@
+﻿@inherits UmbracoViewPage
+@{
+  Layout = "Master.cshtml";
+}
+@Html.GetGridHtml(Model, "contentGrid", "bootstrap4")
+
+<div class="container">
+  @if (Members.IsLoggedIn())
+  {
+    @Html.Partial("/Views/Partials/_MemberProfile.cshtml")
+  }
+  else
+  {
+    Response.Redirect("~/register");
+  }
+</div>

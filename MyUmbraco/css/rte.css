@@ -1,0 +1,54 @@
+﻿/**umb_name:Header 1*/
+h1 {
+  font-size: 2.5rem;
+  margin: auto;
+}
+/**umb_name:Header 2*/
+h2 {
+  font-size: 2rem;
+  margin: auto;
+}
+/**umb_name:Header 3*/
+h3 {
+  font-size: 1.75rem;
+  margin: auto;
+}
+/**umb_name:Header 4*/
+h4 {
+  font-size: 1.5rem;
+  margin: auto;
+}
+/**umb_name:Header 5*/
+h5 {
+  font-size: 1.25rem;
+  margin: auto;
+}
+/**umb_name:Header 6*/
+h6 {
+  font-size: 1rem;
+  margin: auto;
+}
+/**umb_name:Display 1*/
+.display-1 {
+  font-size: 6rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+/**umb_name:Display 2*/
+.display-2 {
+  font-size: 5.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+/**umb_name:Display 3*/
+.display-3 {
+  font-size: 4.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+/**umb_name:Display 4*/
+.display-4 {
+  font-size: 3.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}

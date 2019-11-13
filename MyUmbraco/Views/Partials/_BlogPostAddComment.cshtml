@@ -1,0 +1,38 @@
+﻿@using ClientDependency.Core.Mvc
+@using Umbraco.Core.Composing
+@using MyUmbraco.Controllers
+@using MyUmbraco.ViewModels
+@model BlogPostCommentViewModel
+
+@{
+  var user = Membership.GetUser();
+  Html.EnableClientValidation();
+  Html.EnableUnobtrusiveJavaScript();
+  Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js");
+  Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js");
+
+  if (user != null)
+  {
+    var member = Current.Services.MemberService.GetByEmail(user.Email);
+    Model.MemberId = member.Id;
+  }
+}
+
+@Html.RenderJsHere()
+
+@using (Html.BeginUmbracoForm<BlogPostCommentsController>("HandleSubmitComment", FormMethod.Post, new { @class = "w-100" }))
+{
+  @Html.ValidationSummary("commentModel", true)
+  
+  <div class="form-row" id="comments">
+    <div class="form-group col">
+      @Html.LabelFor(m => Model.Comment)
+      @Html.TextAreaFor(m => Model.Comment, new { id = "comment-input", @class = "form-control" })
+      @Html.HiddenFor(m => Model.Comment)
+      @Html.ValidationMessageFor(m => Model.Comment)
+      @Html.HiddenFor(m => Model.BlogPostId)
+    </div>
+  </div>
+  @Html.AntiForgeryToken()
+  <button type="submit" class="btn btn-primary">Post Comment</button>
+}

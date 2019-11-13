@@ -1,0 +1,27 @@
+﻿{
+  "gridEditors": [
+    {
+      "name": "Hero Image",
+      "alias": "HeroImage",
+      "view": "/App_Plugins/HeroImageGridEditor/Editors/HeroImageEditor.html",
+      "icon": "icon-pictures-alt-2",
+      "render": "/App_Plugins/HeroImageGridEditor/Views/HeroImage.cshtml",
+      "config": {
+        "heroImage": {
+          "mode": "required",
+          "placeholder": "Select an image"
+        },
+        "heroText": {
+          "mode": "optional",
+          "placeholder": "Enter the hero text"
+        }
+      }
+    }
+  ],
+  "javascript": [
+    "/App_Plugins/HeroImageGridEditor/scripts/editor.controller.js"
+  ],
+  "css": [
+    "/App_Plugins/HeroImageGridEditor/styles/default.css"
+  ]
+}

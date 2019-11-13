@@ -1,0 +1,106 @@
+﻿@inherits UmbracoViewPage
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using MyUmbraco.Controllers
+
+
+
+@{
+    @*
+        You can specify a custom member type alias in the constructor, the default is 'Member'
+        for example, to use 'Custom Member' you'd use this syntax:
+
+        var registerModel = Members.CreateRegistrationModel("Custom Member");
+    *@
+
+    var registerModel = Members.CreateRegistrationModel("MyUmbracoMember");
+    registerModel.MemberProperties[2].Value = "/App_Themes/MyUmbraco/img/avatar.png";
+
+    @*
+        Configurable here:
+
+        registerModel.RedirectUrl       - Optional. What path to redirect to if registration is successful.
+                                          By default the member will be redirected to the current umbraco page
+                                          unless this is specified.
+
+        registerModel.UsernameIsEmail   - the default is true
+                                          if you want the username to be different from the email
+                                          address, set this to true and add a new Username field in
+                                          the form below
+
+                                          @Html.LabelFor(m => registerModel.Username)
+                                          @Html.TextBoxFor(m => registerModel.Username)
+                                          @Html.ValidationMessageFor(m => registerModel.Username)
+    *@
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+    //Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js");
+    Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js");
+
+    var success = TempData["FormSuccess"] != null;
+}
+
+@*NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed*@
+@Html.RenderJsHere()
+
+@if (success)
+{
+    @* This message will show if RedirectOnSucces is set to false (default) *@
+    <p>Registration succeeded.</p>
+}
+else
+{
+  using (Html.BeginUmbracoForm<RegisterController>("HandleRegisterMember"))
+  {
+    <fieldset>
+      <legend>Register Member</legend>
+
+      @Html.ValidationSummary("registerModel", true)
+      @*
+    We have to output ALL custom fields even if we don't want to capture certain fields on registration
+    otherwise no custom props will be saved.
+    e.g. The member avatar should not be captured on registration but should be visible in the portfolio
+      *@
+      @Html.HiddenFor(m => registerModel.MemberProperties[2].Alias)
+      @Html.HiddenFor(m => registerModel.MemberProperties[2].Value)
+      <div class="form-row">
+        <div class="form-group col">
+          @Html.LabelFor(m => registerModel.MemberProperties[0].Value, Umbraco.GetDictionaryValue("Label.FirstName"))
+          @Html.TextBoxFor(m => registerModel.MemberProperties[0].Value, null, new { required = "required", @class = "form-control" })
+          @Html.ValidationMessageFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Validation.FirstName"))
+          @Html.HiddenFor(m => registerModel.MemberProperties[0].Alias)
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          @Html.LabelFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Label.LastName"))
+          @Html.TextBoxFor(m => registerModel.MemberProperties[1].Value, null, new { required = "required", @class = "form-control" })
+          @Html.ValidationMessageFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Validation.LastName"))
+          @Html.HiddenFor(m => registerModel.MemberProperties[1].Alias)
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          @Html.LabelFor(m => registerModel.Email, Umbraco.GetDictionaryValue("Label.Email"))
+          @Html.TextBoxFor(m => registerModel.Email, null, new { @class = "form-control", aria_describedby = "emailHelp", data_val_required = Umbraco.GetDictionaryValue("Validation.Email"), data_val_regex = Umbraco.GetDictionaryValue("Validation.Email.Valid") })
+          @Html.ValidationMessageFor(m => registerModel.Email)
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col">
+          @Html.LabelFor(m => registerModel.Password, Umbraco.GetDictionaryValue("Label.Password"))
+          @Html.PasswordFor(m => registerModel.Password, new { @class = "form-control", autocomplete = "new-password", data_val_required = Umbraco.GetDictionaryValue("Validation.Password") })
+          @Html.ValidationMessageFor(m => registerModel.Password)
+        </div>
+      </div>
+      @Html.HiddenFor(m => registerModel.MemberTypeAlias)
+      @Html.HiddenFor(m => registerModel.RedirectUrl)
+      @Html.HiddenFor(m => registerModel.UsernameIsEmail)
+      @Html.AntiForgeryToken()
+      <button type="submit" class="btn btn-primary w-100">@Umbraco.GetDictionaryValue("Button.CreateAccount")</button>
+    </fieldset>
+    }
+}

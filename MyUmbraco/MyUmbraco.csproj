@@ -395,10 +395,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Plugins\BlockQuoteGridEditor\Editors\BlockQuoteEditor.html" />
+    <Content Include="App_Plugins\BlockQuoteGridEditor\Scripts\editor.controller.js" />
+    <Content Include="App_Plugins\BlockQuoteGridEditor\Styles\default.css" />
+    <Content Include="App_Plugins\HeroImageGridEditor\Scripts\editor.controller.js" />
+    <Content Include="App_Plugins\HeroImageGridEditor\Styles\default.css" />
+    <Content Include="App_Plugins\HeroImageGridEditor\Editors\HeroImageEditor.html" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.controller.js" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.html" />
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
     <Content Include="App_Themes\MyUmbraco\css\mu.min.css" />
+    <Content Include="App_Themes\MyUmbraco\img\avatar.png" />
+    <Content Include="App_Themes\MyUmbraco\img\high-five-active.png" />
+    <Content Include="App_Themes\MyUmbraco\img\high-five.png" />
+    <Content Include="App_Themes\MyUmbraco\img\logo.png" />
+    <Content Include="App_Themes\MyUmbraco\js\mu.min.js">
+      <DependentUpon>mu.js</DependentUpon>
+    </Content>
+    <Content Include="App_Themes\MyUmbraco\js\mu.js" />
     <Content Include="config\grid.editors.config.js" />
     <Content Include="config\Lang\cs-CZ.user.xml" />
     <Content Include="config\Lang\da-DK.user.xml" />
@@ -419,6 +433,7 @@
     <Content Include="config\Lang\sv-SE.user.xml" />
     <Content Include="config\Lang\zh-CN.user.xml" />
     <Content Include="config\logviewer.searches.config.js" />
+    <Content Include="css\rte.css" />
     <Content Include="dev\js\bootstrap\alert.js" />
     <Content Include="dev\js\bootstrap\button.js" />
     <Content Include="dev\js\bootstrap\carousel.js" />
@@ -434,8 +449,11 @@
     <Content Include="dev\js\bootstrap\tooltip.js" />
     <Content Include="dev\js\bootstrap\util.js" />
     <Content Include="dev\js\scripts.js" />
-    <Content Include="dev\js\mi.js" />
+    <Content Include="dev\js\mu.js" />
     <Content Include="Global.asax" />
+    <Content Include="Media\1yhjn1r3\umbraco-key-value.png" />
+    <Content Include="Media\3lsepv4y\home-header.jpeg" />
+    <Content Include="Media\et2ppehw\the-table-exists.png" />
     <Content Include="Umbraco\assets\css\canvasdesigner.css" />
     <Content Include="Umbraco\assets\css\installer.css" />
     <Content Include="Umbraco\assets\css\nonodes.style.min.css" />
@@ -2161,6 +2179,23 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Code\Repositories\BlogPostRepository.cs" />
+    <Content Include="App_Code\Controllers\BlogPostController.cs" />
+    <Content Include="App_Code\Components\BlogPostHighFiveComponent.cs" />
+    <Content Include="App_Code\Models\BlogPostHighFive.cs" />
+    <Content Include="App_Code\Repositories\BlogPostHighFiveRepository.cs" />
+    <Content Include="App_Code\ViewModels\BlogPostHighFiveViewModel.cs" />
+    <Content Include="App_Code\Controllers\BlogPostHighFiveController.cs" />
+    <Content Include="App_Code\Controllers\BlogPostCommentsController.cs" />
+    <Content Include="App_Code\Controllers\MemberProfileController.cs" />
+    <Content Include="App_Code\Controllers\RegisterController.cs" />
+    <Content Include="App_Code\Repositories\BlogPostCommentsRepository.cs" />
+    <Content Include="App_Code\ViewModels\BlogPostCommentViewModel.cs" />
+    <Content Include="App_Code\Models\BlogPostComment.cs" />
+    <Content Include="App_Code\Components\BlogPostCommentsComponent.cs" />
+    <Content Include="App_Code\Models\BlogPostCommentView.cs" />
+    <Content Include="App_Code\Repositories\MemberRepository.cs" />
+    <Content Include="App_Code\Controllers\TestController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2274,6 +2309,10 @@
     <Content Include="dev\css\_flag-icon-base.scss" />
     <Content Include="dev\css\_flag-icon-list.scss" />
     <Content Include="dev\css\_variables.scss" />
+    <Content Include="App_Plugins\HeroImageGridEditor\package.manifest" />
+    <Content Include="App_Plugins\HeroImageGridEditor\Views\HeroImage.cshtml" />
+    <Content Include="App_Plugins\BlockQuoteGridEditor\package.manifest" />
+    <Content Include="App_Plugins\BlockQuoteGridEditor\Views\BlockQuote.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
@@ -2389,6 +2428,27 @@
     <None Include="Properties\PublishProfiles\RSDMyUmbraco - Web Deploy.pubxml" />
     <Content Include="Views\Blog.cshtml" />
     <Content Include="Views\BlogPost.cshtml" />
+    <Content Include="Views\Partials\_BlogPostTeaser.cshtml" />
+    <Content Include="Views\Partials\_BlogPostsLanding.cshtml" />
+    <Content Include="Views\master.cshtml" />
+    <Content Include="Views\Partials\_MainNav.cshtml" />
+    <Content Include="Views\Partials\_FeaturedBlogPost.cshtml" />
+    <Content Include="Views\Partials\Grid\Bootstrap4.cshtml" />
+    <Content Include="Views\MacroPartials\_CodeSnippet.cshtml" />
+    <Content Include="Views\Partials\_BlogPostHighFive.cshtml" />
+    <Content Include="Views\Partials\_BlogPostAddComment.cshtml" />
+    <Content Include="Views\Partials\_BlogPostComments.cshtml" />
+    <Content Include="Views\Partials\_LanguageSwitcher.cshtml" />
+    <Content Include="Views\Partials\_MemberLogin.cshtml" />
+    <Content Include="Views\Partials\_MemberProfile.cshtml" />
+    <Content Include="Views\Partials\_MemberRegistration.cshtml" />
+    <Content Include="Views\login.cshtml" />
+    <Content Include="Views\profile.cshtml" />
+    <Content Include="Views\Content.cshtml" />
+    <Content Include="Views\register.cshtml" />
+    <Content Include="Views\Partials\_MemberAuthenticationStatus.cshtml" />
+    <Content Include="Views\Partials\_TestAnyMethod.cshtml" />
+    <Content Include="Views\TestAnyMethod.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2401,14 +2461,9 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\Components\" />
-    <Folder Include="App_Code\Controllers\" />
-    <Folder Include="App_Code\Models\" />
-    <Folder Include="App_Code\Repositories\" />
-    <Folder Include="App_Code\ViewModels\" />
-    <Folder Include="App_Themes\MyUmbraco\img\svg\" />
-    <Folder Include="App_Themes\MyUmbraco\js\" />
-    <Folder Include="Views\MacroPartials\" />
+    <Folder Include="App_Themes\MyUmbraco\fonts\" />
+    <Folder Include="App_Themes\MyUmbraco\svg\" />
+    <Folder Include="Views\Test\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

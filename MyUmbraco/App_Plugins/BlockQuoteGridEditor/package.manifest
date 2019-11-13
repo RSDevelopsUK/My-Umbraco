@@ -1,0 +1,35 @@
+﻿{
+  "gridEditors": [
+    {
+      "name": "Block Quote",
+      "alias": "BlockQuote",
+      "view": "/App_Plugins/BlockQuoteGridEditor/Editors/BlockQuoteEditor.html",
+      "icon": "icon-quote",
+      "render": "/App_Plugins/BlockQuoteGridEditor/Views/BlockQuote.cshtml",
+      "config": {
+        "quote": {
+          "mode": "required",
+          "placeholder": "Enter the quote text"
+        },
+        "quoteSourceText": {
+          "mode": "optional",
+          "placeholder": "Enter any source text"
+        },
+        "quoteSourceLink": {
+          "mode": "optional",
+          "placeholder": "Enter a reference link"
+        },
+        "quoteSourceLinkText": {
+          "mode": "optional",
+          "placeholder": "Enter the reference link's text'"
+        }
+      }
+    }
+  ],
+  "javascript": [
+    "/App_Plugins/BlockQuoteGridEditor/scripts/editor.controller.js"
+  ],
+  "css": [
+    "/App_Plugins/BlockQuoteGridEditor/styles/default.css"
+  ]
+}

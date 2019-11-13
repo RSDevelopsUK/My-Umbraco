@@ -1,5 +1,30 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Blog>
-@using ContentModels = Umbraco.Web.PublishedModels;
+﻿
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
 @{
-	Layout = null;
+  Layout = "master.cshtml";
+  var blogCount = Html.Action("HandleGetBlogPostCount", "BlogPost");
 }
+
+@Html.GetGridHtml(Model, "introductionGrid", "bootstrap4")
+
+<div class="container" id="load-more">
+  @Html.Action("HandleGetBlogs", "BlogPost", new { skip = 0, take = 4, row = 0 })
+</div>
+<div class="container mb-4">
+  <div class="row">
+    @using (Ajax.BeginForm("HandleGetBlogs", "BlogPost", null, new AjaxOptions
+    {
+      HttpMethod = "POST",
+      InsertionMode = InsertionMode.InsertAfter,
+      UpdateTargetId = "load-more"
+    }, new { id = "form-load-more", @class = "mb-0 w-100 text-center" }))
+    {
+      <input id="skip" name="skip" value="2" hidden />
+      <input id="take" name="take" value="2" hidden />
+      <input id="row" name="row" value="1" hidden />
+      <button type="submit" class="btn btn-primary use-ajax m-auto" id="btn-load-more" data-form="form-load-more" style="display:none;">Load More</button>
+    }
+  </div>
+</div>
+<input hidden id="skip-by" name="skip-by" value="2" />
+<input hidden id="blog-post-count" value="@blogCount" />

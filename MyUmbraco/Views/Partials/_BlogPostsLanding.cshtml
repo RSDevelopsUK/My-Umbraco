@@ -1,0 +1,26 @@
+﻿@using System
+@model IEnumerable<IPublishedContent>
+
+@{
+  var i = 1;
+  var x = ViewData["row"] != null ? Convert.ToInt32(ViewData["row"]) : 1;
+}
+
+@foreach (var item in Model)
+{
+  if (i % 2 == 1)
+  {
+    @:<div class="row@(x != 1 ? " d-none" : "")" id="row-@x">
+    }
+    @Html.Partial("_BlogPostTeaser", item)
+    {
+      i++;
+    }
+    if (i % 2 == 1 || i == Model.Count() + 1)
+    {
+    @:</div>
+    {
+      x++;
+    }
+  }
+}

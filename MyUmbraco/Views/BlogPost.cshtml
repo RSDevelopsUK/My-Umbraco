@@ -1,5 +1,30 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.BlogPost>
-@using ContentModels = Umbraco.Web.PublishedModels;
+﻿@using MyUmbraco.ViewModels
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
+
 @{
-	Layout = null;
+  Layout = "master.cshtml";
+  var loginStatusModel = Members.GetCurrentLoginStatus();
+  var blogPostId = Model.Id;
 }
+
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1>@Model.Name</h1>
+    </div>
+  </div>
+</div>
+
+@Html.GetGridHtml(Model, "blogGrid", "bootstrap4")
+
+<div class="container">
+  @if (loginStatusModel.IsLoggedIn)
+  {
+    @Html.Partial("/Views/Partials/_BlogPostHighFive.cshtml", new BlogPostHighFiveViewModel { BlogPostId = blogPostId });
+  }
+  @{Html.RenderAction("Index", "BlogPostComments", new {blogPostId});}
+  @if (loginStatusModel.IsLoggedIn)
+  {
+    @Html.Partial("/Views/Partials/_BlogPostAddComment.cshtml", new BlogPostCommentViewModel {BlogPostId = blogPostId})
+  }
+</div>

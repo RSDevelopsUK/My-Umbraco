@@ -1,0 +1,109 @@
+﻿@inherits UmbracoViewPage
+@using System.Web.Mvc.Html
+@using ClientDependency.Core.Mvc
+@using Umbraco.Web
+@using MyUmbraco.Controllers
+
+@{
+  var profileModel = Members.GetCurrentMemberProfileModel();
+
+  Html.EnableClientValidation();
+  Html.EnableUnobtrusiveJavaScript();
+  Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js");
+  Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js");
+
+  var success = TempData["ProfileUpdateSuccess"] != null;
+  TempData.Remove("FormSuccess");
+  var avatarImg = profileModel.MemberProperties[2].Value;
+  var altImg = "/App_Themes/MyUmbraco/img/avatar.png";
+}
+
+@*NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed*@
+@Html.RenderJsHere()
+
+
+@if (Members.IsLoggedIn())
+{
+  if (success)
+  {
+    @* This message will show if RedirectOnSucces is set to false (default) *@
+    <div id="alert-wrapper">
+      <div class="container">
+        <div class="alert alert-success fade show" id="success-alert" role="alert">
+          Profile updated
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+
+  using (Html.BeginUmbracoForm<MemberProfileController>("HandleUpdateProfile"))
+  {
+    <div class="row justify-content-center">
+      <div class="col-md-10">
+        <fieldset>
+          <legend class="mb-4"><span class="h1">My profile</span></legend>
+
+          @Html.ValidationSummary("profileModel", true)
+
+          <div class="media flex-wrap mb-4">
+            <div class="align-self-start bg-image-full contain border col-lg-6" style="min-width: 400px; min-height: 400px; background: url('@(avatarImg != "" ? avatarImg : altImg)') center center no-repeat transparent;"></div>
+            <div class="media-body align-self-center col-lg-6 mt-4 mt-lg-0 pr-0 pl-0 pl-lg-3">
+              <div class="form-group">
+                <div class="custom-file mb-4">
+                  @Html.EditorFor(m => profileModel.MemberProperties[2].Value, new { htmlAttributes = new { id = "validatedCustomFile", @class = "custom-file-input", type = "file" } })
+                  @Html.LabelFor(m => profileModel.MemberProperties[2].Value, " ", new {id = "avatar-label", @class = "custom-file-label"})
+                  @Html.HiddenFor(m => profileModel.MemberProperties[2].Alias)
+                  <div class="invalid-feedback">Example invalid custom file feedback</div>
+                </div>
+                <button type="button" class="btn btn-danger" id="submit-delete-avatar">Delete</button>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              @Html.LabelFor(m => profileModel.MemberProperties[0].Value, Umbraco.GetDictionaryValue("Label.LastName"))
+              @Html.EditorFor(m => profileModel.MemberProperties[0].Value, new { required = "required", htmlAttributes = new { @class = "form-control" } })
+              @Html.HiddenFor(m => profileModel.MemberProperties[0].Alias)
+            </div>
+            <div class="form-group col-md-6 col-12">
+              @Html.LabelFor(m => profileModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Label.LastName"))
+              @Html.EditorFor(m => profileModel.MemberProperties[1].Value, new { htmlAttributes = new { @class = "form-control" } })
+              @Html.HiddenFor(m => profileModel.MemberProperties[1].Alias)
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6 col-12">
+              @Html.LabelFor(m => profileModel.Email)
+              @Html.TextBoxFor(m => profileModel.Email, null, new { id = "profileEmail", @class = "form-control" })
+              @Html.ValidationMessageFor(m => profileModel.Email)
+            </div>
+          </div>
+
+          <ul class="list-inline mt-3 mb-4">
+            <li class="list-inline-item pr-3 border-right">
+              <button class="btn btn-primary mr-auto">Submit</button>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">Cancel</a>
+            </li>
+          </ul>
+
+        </fieldset>
+      </div>
+    </div>
+    @Html.AntiForgeryToken()
+  }
+}
+
+
+@using (Html.BeginUmbracoForm<MemberProfileController>("DeleteAvatar", new { defaultAvatar = altImg }, new { @class = "d-none", id = "delete-avatar-form" }))
+{
+  <fieldset>
+    <button id="delete-avatar-button">Delete Avatar</button>
+  </fieldset>
+  @Html.AntiForgeryToken()
+}

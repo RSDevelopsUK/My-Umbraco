@@ -1,0 +1,29 @@
+﻿<div ng-controller="MyUmbraco.BlockEditorGridEditor.Controller">
+    
+  <div style="padding:20px;">
+
+    <label class="option w-100">
+      <span>Quote text</span><br />
+      <textarea class="w-100" style="height:200px" ng-model="control.value.quote" placeholder="{{cfg.quote.placeholder}}" ng-required="cfg.quote.required" ></textarea>
+    </label>
+
+    <label class="option w-100">
+      <span>Quote Source Text</span><br />
+      <input type="text" class="w-100" ng-model="control.value.quoteSourceText" placeholder="{{cfg.quoteSourceText.placeholder}}" ng-required="cfg.quoteSourceText.required" />
+    </label>
+
+    <label class="option w-100">
+      <span>Quote Source Link Text</span><br />
+      <input type="text" class="w-100" ng-model="control.value.quoteSourceLinkText" placeholder="{{cfg.altText.quoteSourceLinkText}}" ng-required="cfg.quoteSourceLinkText.required" />
+    </label>
+
+    <label class="option w-100">
+      <a href="#" ng-click="selectLink()" class="btn btn-primary" prevent-default>Select a quote source link</a>
+      <br />
+      <br />
+      <span class="text-center link" style="margin-bottom: 10px;">Quote Source Link: {{control.value.quoteSourceLink}}</span>
+    </label>
+
+  </div>
+
+</div>
