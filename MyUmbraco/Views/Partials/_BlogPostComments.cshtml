@@ -1,15 +1,32 @@
-﻿
-@model List<MyUmbraco.ViewModels.BlogPostCommentViewModel>
+﻿@inherits UmbracoViewPage<List<MyUmbraco.ViewModels.BlogPostCommentViewModel>>
 
-@foreach (var comment in Model)
-{
-  <div class="media flex-wrap border p-3 mb-4 blog-comment">
-    <div class="align-self-start mr-4 d-flex flex-column text-center mw-100px">
-      <img class="rounded-circle align-self-center mb-2" src="@comment.Avatar?width=75&height=75&mode=crop" alt="@comment.FullName">
-      <p class="mb-0"><small>@comment.FullName</small></p>
-    </div>
-    <div class="media-body align-self-center">
-      <p class="m-0">@comment.Comment</p>
-    </div>
-  </div>
+@{
+  var blogPostId = Model != null && Model.Any() ? Model[0].BlogPostId : 0;
+  var blogPostCommentCount = Html.Action("HandleGetBlogPostCommentCount", "BlogPostComments", new { blogPostId = blogPostId });
 }
+@if (Model != null && Model.Any())
+{
+  foreach (var comment in Model)
+  {
+    @Html.Partial("_BlogPostComment", comment)
+  }
+}
+
+<div id="formOuter-BlogPost">
+  @using (Ajax.BeginForm("HandleGetBlogPostComments", "BlogPostComments", null, new AjaxOptions
+  {
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "formOuter-BlogPost"
+  }, new { id = "form-BlogPost", @class = "m-auto" }))
+  {
+    <button id="btn-load-more" type="submit" class="btn btn-primary use-ajax" data-form="form-BlogPost" style="display:none;">Load More</button>
+    
+    <input id="blogPostId" name="blogPostId" value="@blogPostId" hidden />
+    <input id="skip" name="skip" value="5" hidden />
+    <input id="take" name="take" value="5" hidden />
+  }
+</div>
+
+<input hidden id="skip-by" name="skip-by" value="5" />
+<input hidden id="item-count" value="@blogPostCommentCount" />

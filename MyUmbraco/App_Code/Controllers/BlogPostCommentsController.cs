@@ -1,45 +1,41 @@
 ﻿using System.Web.Mvc;
-using Umbraco.Core.Scoping;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Umbraco.Web.Mvc;
-using MyUmbraco.Repositories;
 using MyUmbraco.ViewModels;
+using MyUmbraco.Helpers;
+using MyUmbraco.Services;
+using Umbraco.Web;
 
 namespace MyUmbraco.Controllers
 {
   public class BlogPostCommentsController : SurfaceController
   {
-    private readonly BlogPostCommentsRepository _blogPostCommentsRepository;
+    private readonly IBlogPostCommentsService _blogPostCommentsRepository;
 
-    public BlogPostCommentsController(IScopeProvider context)
+    public BlogPostCommentsController(IBlogPostCommentsService blogPostCommentsService)
     {
-      _blogPostCommentsRepository = new BlogPostCommentsRepository(context);
+      _blogPostCommentsRepository = blogPostCommentsService;
     }
-
-    public ActionResult Index(int blogPostId)
+    public int HandleGetBlogPostCommentCount(int blogPostId)
     {
-      var comments = _blogPostCommentsRepository.GetBlogPostComments(blogPostId);
-
-      return PartialView("/Views/Partials/_BlogPostComments.cshtml", comments);
+      return _blogPostCommentsRepository.GetBlogPostCommentCount(blogPostId);
     }
-
-    public void PostComment(int blogPostId, int memberId, string comment)
-    {
-      _blogPostCommentsRepository.PostComment(blogPostId, memberId, comment);
-    }
-
     [HttpPost]
-    [ValidateAntiForgeryToken]
-    [ValidateUmbracoFormRouteString]
-    public ActionResult HandleSubmitComment(BlogPostCommentViewModel model)
+    public PartialViewResult HandleGetBlogPostComments(int blogPostId, int skip, int take)
     {
-      if (!ModelState.IsValid)
-        return CurrentUmbracoPage();
+      var blogPostComments = _blogPostCommentsRepository.GetPagedBlogPostComments(blogPostId, skip, take);
 
-      var member = Members.GetCurrentMember();
+      ModelState.Clear();
 
-      PostComment(model.BlogPostId, member.Id, model.Comment);
+      return PartialView("/Views/Partials/_BlogPostComments.cshtml", blogPostComments);
+    }
 
-      return RedirectToCurrentUmbracoPage();
+    [HttpGet]
+    public ActionResult Index(int blogPostId, int skip, int take)
+    {
+      var comments = _blogPostCommentsRepository.GetPagedBlogPostComments(blogPostId, skip, take);
+      
+      return PartialView("/Views/Partials/_BlogPostComments.cshtml", comments);
     }
   }
 }

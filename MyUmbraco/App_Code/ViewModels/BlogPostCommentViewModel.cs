@@ -1,5 +1,5 @@
-﻿using NPoco;
-using Umbraco.Core.Persistence.DatabaseAnnotations;
+﻿using System;
+using NPoco;
 
 namespace MyUmbraco.ViewModels
 {
@@ -15,6 +15,9 @@ namespace MyUmbraco.ViewModels
 
     [Column("Comment")]
     public string Comment { get; set; }
+
+    [Column("CommentedOn")]
+    public DateTime CommentedOn { get; set; }
 
     [Column("FirstName")]
     public string FirstName { get; set; }

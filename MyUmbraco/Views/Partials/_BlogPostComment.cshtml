@@ -1,0 +1,12 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<MyUmbraco.ViewModels.BlogPostCommentViewModel>
+
+<div class="media flex-wrap border p-3 mb-4 blog-comment lazy-item">
+  <div class="align-self-start mr-4 d-flex flex-column text-center mw-100px">
+    <img class="rounded-circle align-self-center mb-2" src="@Model.Avatar?width=75&height=75&mode=crop" alt="@Model.FullName">
+    <p class="mb-0"><small>@Model.FullName</small></p>
+    <p class="mb-0"><small>@Model.CommentedOn.ToShortDateString()</small></p>
+  </div>
+  <div class="media-body align-self-center">
+    <p class="m-0">@HttpUtility.HtmlDecode(Model.Comment)</p>
+  </div>
+</div>

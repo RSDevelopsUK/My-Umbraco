@@ -83,17 +83,20 @@ Umbraco.ModelsBuilder.Validation.MediaTypeModelValidator, Umbraco.ModelsBuilder,
 Umbraco.ModelsBuilder.Validation.MemberTypeModelValidator, Umbraco.ModelsBuilder, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderComposer, Umbraco.ModelsBuilder, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderBackOfficeController, Umbraco.ModelsBuilder, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.BlogPostController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.BlogPostHighFiveController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.BlogPostCommentsController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.MemberProfileController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.TestController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.RegisterController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Components.BlogPostCommentsComposer, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Components.BlogPostHighFiveComposer, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Components.BlogPostCommentsComponent+BlogPostCommentsTable, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Components.BlogPostCommentsComponent+BlogPostCommentInfoView, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Components.BlogPostHighFiveComponent+BlogPostHighFivesTable, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.TestController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostCommentsController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.RegisterController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostAddCommentController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.MemberProfileController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.ContactFormController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostHighFiveController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Components.BlogPostCommentsComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Components.BlogPostHighFiveComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Services.RegisterBlogPostCommentsServiceComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Services.RegisterBlogPostServiceComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Services.RegisterBlogPostHighFiveServiceComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Components.BlogPostHighFiveComponent+BlogPostHighFivesTable, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbProfileController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbLoginStatusController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbRegisterController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -302,8 +305,11 @@ Umbraco.Core.Compose.ManifestWatcherComposer, Umbraco.Core, Version=8.0.0.0, Cul
 Umbraco.Core.Compose.RelateOnCopyComposer, Umbraco.Core, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Core.Compose.RelateOnTrashComposer, Umbraco.Core, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.ModelsBuilder.Umbraco.ModelsBuilderComposer, Umbraco.ModelsBuilder, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Components.BlogPostCommentsComposer, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Components.BlogPostHighFiveComposer, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Components.BlogPostCommentsComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Components.BlogPostHighFiveComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Services.RegisterBlogPostCommentsServiceComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Services.RegisterBlogPostServiceComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Services.RegisterBlogPostHighFiveServiceComposer, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.SignalR.PreviewHubComposer, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Runtime.WebInitialComposer, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Runtime.WebFinalComposer, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -358,12 +364,14 @@ Umbraco.Web.PropertyEditors.ValueConverters.RteMacroRenderingValueConverter, Umb
 
 Umbraco.Web.Mvc.PluginController
 
-MyUmbraco.Controllers.BlogPostController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.BlogPostHighFiveController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.BlogPostCommentsController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.MemberProfileController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.TestController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.RegisterController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.TestController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostCommentsController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.RegisterController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostAddCommentController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.MemberProfileController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.ContactFormController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostHighFiveController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbProfileController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbLoginStatusController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbRegisterController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
@@ -448,12 +456,14 @@ Umbraco.Web.Editors.MediaController, Umbraco.Web, Version=8.0.0.0, Culture=neutr
 
 Umbraco.Web.Mvc.SurfaceController
 
-MyUmbraco.Controllers.BlogPostController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.BlogPostHighFiveController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.BlogPostCommentsController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.MemberProfileController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.TestController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-MyUmbraco.Controllers.RegisterController, App_Code.mrx4h5cb, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.TestController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostCommentsController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.RegisterController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostAddCommentController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.MemberProfileController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.ContactFormController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+MyUmbraco.Controllers.BlogPostHighFiveController, App_Code.f2wplvap, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbProfileController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbLoginStatusController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null
 Umbraco.Web.Controllers.UmbRegisterController, Umbraco.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=null

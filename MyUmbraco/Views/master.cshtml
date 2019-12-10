@@ -6,13 +6,23 @@
 <!doctype html>
 <html lang="en" class="h-100">
 <head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-153119244-1"></script>
+  <script type="text/javascript">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-153119244-1');
+  </script>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
-  <link href="~/App_Themes/MyUmbraco/css/mu.min.css" rel="stylesheet" />
+  <link href="~/App_Themes/MyUmbraco/css/mu.min.css" rel="stylesheet"/>
   <script src="~/App_Themes/MyUmbraco/js/mu.min.js"></script>
+
   @Html.RenderJsHere()
+
   <title>MyUmbraco</title>
 </head>
 <body class="d-flex flex-column h-100">

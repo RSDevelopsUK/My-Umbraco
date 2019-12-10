@@ -1,8 +1,8 @@
-﻿@using ClientDependency.Core.Mvc
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<BlogPostAddCommentViewModel>
+@using ClientDependency.Core.Mvc
 @using Umbraco.Core.Composing
 @using MyUmbraco.Controllers
 @using MyUmbraco.ViewModels
-@model BlogPostCommentViewModel
 
 @{
   var user = Membership.GetUser();
@@ -10,29 +10,34 @@
   Html.EnableUnobtrusiveJavaScript();
   Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js");
   Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js");
-
-  if (user != null)
-  {
-    var member = Current.Services.MemberService.GetByEmail(user.Email);
-    Model.MemberId = member.Id;
-  }
+  Html.RequiresJs("https://www.google.com/recaptcha/api.js?render=6LcwwcIUAAAAAIMrav7hMy5sx7HINLjjpAlEMHVu");
 }
 
 @Html.RenderJsHere()
 
-@using (Html.BeginUmbracoForm<BlogPostCommentsController>("HandleSubmitComment", FormMethod.Post, new { @class = "w-100" }))
+@using (Html.BeginUmbracoForm("Submit", "BlogPostAddComment", FormMethod.Post, new { @class = "w-100" }))
 {
-  @Html.ValidationSummary("commentModel", true)
-  
   <div class="form-row" id="comments">
     <div class="form-group col">
       @Html.LabelFor(m => Model.Comment)
       @Html.TextAreaFor(m => Model.Comment, new { id = "comment-input", @class = "form-control" })
-      @Html.HiddenFor(m => Model.Comment)
-      @Html.ValidationMessageFor(m => Model.Comment)
+      @Html.ValidationMessageFor(m => Model.Comment, Umbraco.GetDictionaryValue("Validation.Required"))
+
       @Html.HiddenFor(m => Model.BlogPostId)
     </div>
   </div>
   @Html.AntiForgeryToken()
-  <button type="submit" class="btn btn-primary">Post Comment</button>
+  <button id="submit-button" type="submit" class="btn btn-primary">Post Comment</button>
+  @Html.Partial("_RecaptchaInfo")
+  <input type="hidden" id="captcha" name="captcha" />
 }
+
+<script type="text/javascript">
+  grecaptcha.ready(function () {
+    grecaptcha
+      .execute('6LcwwcIUAAAAAIMrav7hMy5sx7HINLjjpAlEMHVu', { action: 'blogCommentSubmit' })
+      .then(function (token) {
+        document.getElementById("captcha").value = token;
+      });
+  });
+</script>

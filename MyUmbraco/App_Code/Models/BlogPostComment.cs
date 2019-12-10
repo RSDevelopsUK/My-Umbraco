@@ -1,4 +1,6 @@
-﻿using NPoco;
+﻿using System;
+using System.Web.Mvc;
+using NPoco;
 using Umbraco.Core.Persistence.DatabaseAnnotations;
 
 namespace MyUmbraco.Models
@@ -20,5 +22,8 @@ namespace MyUmbraco.Models
 
     [Column("Comment")]
     public string Comment { get; set; }
+
+    [Column("CommentedOn")]
+    public DateTime CommentedOn { get; set; }
   }
 }

@@ -1,4 +1,5 @@
 ﻿@inherits UmbracoViewPage
+@using System.Configuration
 @using System.Web.Mvc.Html
 @using ClientDependency.Core.Mvc
 @using Umbraco.Web
@@ -15,7 +16,7 @@
     *@
 
     var registerModel = Members.CreateRegistrationModel("MyUmbracoMember");
-    registerModel.MemberProperties[2].Value = "/App_Themes/MyUmbraco/img/avatar.png";
+    registerModel.MemberProperties[2].Value = Environment.ExpandEnvironmentVariables(ConfigurationManager.AppSettings.Get("DefaultProfilePictureLocation"));
 
     @*
         Configurable here:
@@ -70,7 +71,7 @@ else
         <div class="form-group col">
           @Html.LabelFor(m => registerModel.MemberProperties[0].Value, Umbraco.GetDictionaryValue("Label.FirstName"))
           @Html.TextBoxFor(m => registerModel.MemberProperties[0].Value, null, new { required = "required", @class = "form-control" })
-          @Html.ValidationMessageFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Validation.FirstName"))
+          @Html.ValidationMessageFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Validation.Required"))
           @Html.HiddenFor(m => registerModel.MemberProperties[0].Alias)
         </div>
       </div>
@@ -78,21 +79,21 @@ else
         <div class="form-group col">
           @Html.LabelFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Label.LastName"))
           @Html.TextBoxFor(m => registerModel.MemberProperties[1].Value, null, new { required = "required", @class = "form-control" })
-          @Html.ValidationMessageFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Validation.LastName"))
+          @Html.ValidationMessageFor(m => registerModel.MemberProperties[1].Value, Umbraco.GetDictionaryValue("Validation.Required"))
           @Html.HiddenFor(m => registerModel.MemberProperties[1].Alias)
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
           @Html.LabelFor(m => registerModel.Email, Umbraco.GetDictionaryValue("Label.Email"))
-          @Html.TextBoxFor(m => registerModel.Email, null, new { @class = "form-control", aria_describedby = "emailHelp", data_val_required = Umbraco.GetDictionaryValue("Validation.Email"), data_val_regex = Umbraco.GetDictionaryValue("Validation.Email.Valid") })
+          @Html.TextBoxFor(m => registerModel.Email, null, new { @class = "form-control", aria_describedby = "emailHelp", data_val_required = Umbraco.GetDictionaryValue("Validation.Required"), data_val_regex = Umbraco.GetDictionaryValue("Validation.Email.Valid") })
           @Html.ValidationMessageFor(m => registerModel.Email)
         </div>
       </div>
       <div class="form-row">
         <div class="form-group col">
           @Html.LabelFor(m => registerModel.Password, Umbraco.GetDictionaryValue("Label.Password"))
-          @Html.PasswordFor(m => registerModel.Password, new { @class = "form-control", autocomplete = "new-password", data_val_required = Umbraco.GetDictionaryValue("Validation.Password") })
+          @Html.PasswordFor(m => registerModel.Password, new { @class = "form-control", autocomplete = "new-password", data_val_required = Umbraco.GetDictionaryValue("Validation.Required") })
           @Html.ValidationMessageFor(m => registerModel.Password)
         </div>
       </div>

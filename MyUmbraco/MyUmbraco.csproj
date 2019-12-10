@@ -248,7 +248,6 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -408,6 +407,7 @@
     <Content Include="App_Themes\MyUmbraco\img\avatar.png" />
     <Content Include="App_Themes\MyUmbraco\img\high-five-active.png" />
     <Content Include="App_Themes\MyUmbraco\img\high-five.png" />
+    <Content Include="App_Themes\MyUmbraco\img\icon-recaptcha.png" />
     <Content Include="App_Themes\MyUmbraco\img\logo.png" />
     <Content Include="App_Themes\MyUmbraco\js\mu.min.js">
       <DependentUpon>mu.js</DependentUpon>
@@ -434,6 +434,8 @@
     <Content Include="config\Lang\zh-CN.user.xml" />
     <Content Include="config\logviewer.searches.config.js" />
     <Content Include="css\rte.css" />
+    <Content Include="data\localisation\de.xml" />
+    <Content Include="data\localisation\en.xml" />
     <Content Include="dev\js\bootstrap\alert.js" />
     <Content Include="dev\js\bootstrap\button.js" />
     <Content Include="dev\js\bootstrap\carousel.js" />
@@ -450,10 +452,17 @@
     <Content Include="dev\js\bootstrap\util.js" />
     <Content Include="dev\js\scripts.js" />
     <Content Include="dev\js\mu.js" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Media\1yhjn1r3\umbraco-key-value.png" />
     <Content Include="Media\3lsepv4y\home-header.jpeg" />
     <Content Include="Media\et2ppehw\the-table-exists.png" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Umbraco\assets\css\canvasdesigner.css" />
     <Content Include="Umbraco\assets\css\installer.css" />
     <Content Include="Umbraco\assets\css\nonodes.style.min.css" />
@@ -2179,23 +2188,31 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\Repositories\BlogPostRepository.cs" />
     <Content Include="App_Code\Controllers\BlogPostController.cs" />
     <Content Include="App_Code\Components\BlogPostHighFiveComponent.cs" />
     <Content Include="App_Code\Models\BlogPostHighFive.cs" />
-    <Content Include="App_Code\Repositories\BlogPostHighFiveRepository.cs" />
     <Content Include="App_Code\ViewModels\BlogPostHighFiveViewModel.cs" />
     <Content Include="App_Code\Controllers\BlogPostHighFiveController.cs" />
     <Content Include="App_Code\Controllers\BlogPostCommentsController.cs" />
     <Content Include="App_Code\Controllers\MemberProfileController.cs" />
     <Content Include="App_Code\Controllers\RegisterController.cs" />
-    <Content Include="App_Code\Repositories\BlogPostCommentsRepository.cs" />
     <Content Include="App_Code\ViewModels\BlogPostCommentViewModel.cs" />
     <Content Include="App_Code\Models\BlogPostComment.cs" />
     <Content Include="App_Code\Components\BlogPostCommentsComponent.cs" />
     <Content Include="App_Code\Models\BlogPostCommentView.cs" />
-    <Content Include="App_Code\Repositories\MemberRepository.cs" />
     <Content Include="App_Code\Controllers\TestController.cs" />
+    <Content Include="App_Code\Helpers\CaptchaHelper.cs" />
+    <Content Include="App_Code\Services\BlogPostCommentsService.cs" />
+    <Content Include="App_Code\Services\BlogPostHighFiveService.cs" />
+    <Content Include="App_Code\Controllers\BlogPostAddCommentController.cs" />
+    <Content Include="App_Code\ViewModels\ContactFormViewModel.cs" />
+    <Content Include="App_Code\Controllers\ContactFormController.cs" />
+    <Content Include="App_Code\ViewModels\BlogPostAddCommentViewModel.cs" />
+    <Content Include="App_Code\Filters\TranslateAttributeFilter.cs" />
+    <Content Include="App_Code\DataAnnotations\UmbracoRequired.cs" />
+    <Content Include="App_Code\Interfaces\IUmbracoValidationAttribute.cs" />
+    <Content Include="App_Code\Services\BlogPostService.cs" />
+    <Content Include="App_Code\Helpers\LanguageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2313,7 +2330,12 @@
     <Content Include="App_Plugins\HeroImageGridEditor\Views\HeroImage.cshtml" />
     <Content Include="App_Plugins\BlockQuoteGridEditor\package.manifest" />
     <Content Include="App_Plugins\BlockQuoteGridEditor\Views\BlockQuote.cshtml" />
-    <None Include="packages.config" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Partials\Grid\Editors\Textstring.cshtml" />
     <Content Include="Views\Partials\Grid\Editors\Rte.cshtml" />
@@ -2342,6 +2364,7 @@
     <Content Include="Umbraco\assets\fonts\lato\LatoLatin-LightItalic.woff2" />
     <Content Include="Umbraco\assets\fonts\lato\LatoLatin-Regular.woff" />
     <Content Include="Umbraco\assets\fonts\lato\LatoLatin-Regular.woff2" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Umbraco\assets\fonts\web.config" />
     <Content Include="Umbraco\Install\Views\Index.cshtml" />
     <None Include="Umbraco\Install\Views\Web.config" />
@@ -2449,6 +2472,10 @@
     <Content Include="Views\Partials\_MemberAuthenticationStatus.cshtml" />
     <Content Include="Views\Partials\_TestAnyMethod.cshtml" />
     <Content Include="Views\TestAnyMethod.cshtml" />
+    <Content Include="Views\Partials\_RecaptchaInfo.cshtml" />
+    <Content Include="Views\Partials\_ContactForm.cshtml" />
+    <Content Include="Views\ContactForm.cshtml" />
+    <Content Include="Views\Partials\_BlogPostComment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2461,9 +2488,10 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.2.6.1\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Code\Dashboards\" />
     <Folder Include="App_Themes\MyUmbraco\fonts\" />
     <Folder Include="App_Themes\MyUmbraco\svg\" />
-    <Folder Include="Views\Test\" />
+    <Folder Include="Views\ContactForm\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

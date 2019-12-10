@@ -8,6 +8,12 @@ html {
   scroll-behavior: smooth;
 }
 
+// Forms
+
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 // Hero Image / Video
 header {
   &.bg-image-full {
@@ -109,6 +115,26 @@ header {
     width:80%;
     text-overflow:ellipsis;
   }
+}
+
+// Validation
+
+.field-validation-valid {
+  display: none;
+}
+
+.validation-summary-valid {
+  display: none;
+}
+
+.form-control:focus.input-validation-error,
+.input-validation-error {
+  border-color: $danger;
+  box-shadow: 0 0 0 0.2rem rgba($danger, 0.25)
+}
+
+.field-validation-error {
+  color: $danger;
 }
 
 // Custom End

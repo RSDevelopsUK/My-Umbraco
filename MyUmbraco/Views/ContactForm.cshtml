@@ -1,0 +1,10 @@
+﻿@using MyUmbraco.ViewModels
+@{
+    Layout = "master.cshtml";
+
+}
+<div class="container">
+  <div class="col-md-8 m-auto">
+      @{ Html.RenderAction("Index", "ContactForm");}
+  </div>
+</div>

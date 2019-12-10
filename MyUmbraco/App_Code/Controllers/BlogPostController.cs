@@ -1,34 +1,33 @@
 ﻿using System.Web.Mvc;
-using MyUmbraco.Repositories;
-using Umbraco.Web;
+using MyUmbraco.Services;
 using Umbraco.Web.Mvc;
 
 namespace MyUmbraco.Controllers
 {
   public class BlogPostController : SurfaceController
   {
-    private readonly BlogPostRepository _blogRepository;
+    private readonly IBlogPostService _blogPostService;
 
-    public BlogPostController(IUmbracoContextFactory context)
+    public BlogPostController(IBlogPostService blogPostService)
     {
-      _blogRepository = new BlogPostRepository(context);
+      _blogPostService = blogPostService;
     }
 
     public int HandleGetBlogPostCount()
     {
-      return _blogRepository.GetBlogPostCount();
+      return _blogPostService.GetBlogPostCount();
     }
 
     public PartialViewResult HandleGetGetMostRecentBlogPost()
     {
-      var featuredBlog = _blogRepository.GetMostRecentBlogPost();
+      var featuredBlog = _blogPostService.GetMostRecentBlogPost();
 
       return PartialView("/Views/Partials/_FeaturedBlogPost.cshtml", featuredBlog);
     }
 
     public PartialViewResult HandleGetBlogs(int skip, int take, int row = 0)
     {
-      var blogPosts = _blogRepository.GetPagedBlogPosts(skip, take);
+      var blogPosts = _blogPostService.GetPagedBlogPosts(skip, take);
 
       ModelState.Clear();
       ViewData["row"] = row + 1;

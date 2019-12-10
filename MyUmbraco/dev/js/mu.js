@@ -1,5 +1,5 @@
-﻿var blogCheck = function() {
-  if (parseInt($("#blog-post-count").val()) > $(".blog-post:visible").length) {
+﻿var loadMoreCheck = function() {
+  if (parseInt($("#item-count").val()) > $(".lazy-item:visible").length) {
     $("#btn-load-more").show();
   }
 }
@@ -34,6 +34,8 @@ $(document).ready(function () {
     const formId = $(this).data("form");
     const formIdHash = `#${formId}`;
 
+    console.log(formIdHash);
+
     if (formId === "form-load-more") {
       const row = $("#row").val();
       const newRow = parseInt(row) + 1;
@@ -44,13 +46,12 @@ $(document).ready(function () {
       const newSkip = skip + skipBy;
       $("#skip").val(newSkip);
 
-      blogCheck();
+      loadMoreCheck();
     }
-
     $(formIdHash).submit();
   });
 
-  blogCheck();
+  loadMoreCheck();
 
   // Copy code
   $(".copy-code").on("click",
@@ -61,6 +62,13 @@ $(document).ready(function () {
       document.execCommand("copy");
       $temp.remove();
     });
+
+  // Popovers
+  $(function() {
+    $('[data-toggle="popover"]').popover({
+      trigger: "focus"
+    });
+  });
 
 });
 

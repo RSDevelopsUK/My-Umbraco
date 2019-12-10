@@ -1,19 +1,18 @@
 ﻿using System.Web.Mvc;
-using MyUmbraco.Repositories;
+using MyUmbraco.Services;
 using MyUmbraco.ViewModels;
-using Umbraco.Core.Scoping;
 using Umbraco.Web.Mvc;
 
 namespace MyUmbraco.Controllers
 {
   public class BlogPostHighFiveController : SurfaceController
   {
-    private readonly BlogPostHighFiveRepository _BlogPostHighFiveService;
+    private readonly IBlogPostHighFiveService _blogPostHighFiveService;
     public const string PartialViewFolder = "~/Views/Partials/";
 
-    public BlogPostHighFiveController(IScopeProvider scopeProvider)
+    public BlogPostHighFiveController(IBlogPostHighFiveService blogPostHighFiveService)
     {
-      _BlogPostHighFiveService = new BlogPostHighFiveRepository(scopeProvider);
+      _blogPostHighFiveService = blogPostHighFiveService;
     }
 
     // GET
@@ -25,19 +24,19 @@ namespace MyUmbraco.Controllers
     [ChildActionOnly]
     public int HandleGetHighFiveCount(int blogPostId)
     {
-      return _BlogPostHighFiveService.GetHighFiveCount(blogPostId);
+      return _blogPostHighFiveService.GetHighFiveCount(blogPostId);
     }
 
     [ChildActionOnly]
     public bool HandleUserHasHighFived(int blogPostId, int memberId)
     {
-      return _BlogPostHighFiveService.MemberHasHighFived(blogPostId, memberId);
+      return _blogPostHighFiveService.MemberHasHighFived(blogPostId, memberId);
     }
 
     [HttpPost]
     public ActionResult HandleHighFiveComment(BlogPostHighFiveViewModel model)
     {
-      _BlogPostHighFiveService.HighFiveComment(model);
+      _blogPostHighFiveService.HighFiveComment(model);
 
       return PartialView(PartialViewFolder + "_BlogPostHighFive.cshtml", model);
     }

@@ -7,12 +7,13 @@
 
 
 @{
-  var loginModel = new LoginModel {RedirectUrl = HttpContext.Current.Request.Url.AbsolutePath};
+  var loginModel = new LoginModel { RedirectUrl = HttpContext.Current.Request.Url.AbsolutePath };
 
   Html.EnableClientValidation();
   Html.EnableUnobtrusiveJavaScript();
   Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js");
   Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js");
+  Html.RequiresJs("https://www.google.com/recaptcha/api.js?render=6LcwwcIUAAAAAIMrav7hMy5sx7HINLjjpAlEMHVu");
 }
 
 @* NOTE: This RenderJsHere code should be put on your main template page where the rest of your script tags are placed *@
@@ -39,4 +40,15 @@
     </div>
     <button class="btn btn-primary w-100">Login</button>
   </fieldset>
+  <input type="hidden" id="passed" name="passed" />
 }
+
+<script type="text/javascript">
+  grecaptcha.ready(function () {
+    grecaptcha
+      .execute('6LcwwcIUAAAAAIMrav7hMy5sx7HINLjjpAlEMHVu', { action: 'memberLoginSubmit' })
+      .then(function (token) {
+        document.getElementById("passed").value = token;
+      });
+  });
+</script>

@@ -1,0 +1,42 @@
+﻿@using ClientDependency.Core.Mvc
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<MyUmbraco.ViewModels.ContactFormViewModel>
+
+@{
+  Html.EnableClientValidation();
+  Html.EnableUnobtrusiveJavaScript();
+  Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js");
+  Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js");
+  Html.RequiresJs("https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js");
+}
+
+@using (Html.BeginUmbracoForm("Submit", "ContactForm"))
+{
+  <div class="form-group">
+    @Html.LabelFor(m => m.Name, new { @class = "form-label" })
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => Model.Name, Umbraco.GetDictionaryValue("Validation.Required"))
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => Model.Email)
+  </div>
+  <div class="form-group">
+    @Html.LabelFor(m => m.Message)
+    @Html.TextAreaFor(m => m.Message, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => Model.Message)
+  </div>
+  <input type="submit" name="Submit" value="Submit" class="btn btn-primary m-auto" />
+  @Html.AntiForgeryToken()
+  @Html.Partial("_RecaptchaInfo")
+}
+
+<script type="text/javascript">
+  grecaptcha.ready(function () {
+    grecaptcha
+      .execute('6LcwwcIUAAAAAIMrav7hMy5sx7HINLjjpAlEMHVu', { action: 'blogCommentSubmit' })
+      .then(function (token) {
+        document.getElementById("captcha").value = token;
+      });
+  });
+</script>

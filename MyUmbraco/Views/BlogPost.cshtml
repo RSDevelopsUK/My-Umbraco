@@ -22,9 +22,9 @@
   {
     @Html.Partial("/Views/Partials/_BlogPostHighFive.cshtml", new BlogPostHighFiveViewModel { BlogPostId = blogPostId });
   }
-  @{Html.RenderAction("Index", "BlogPostComments", new {blogPostId});}
+  @{Html.RenderAction("Index", "BlogPostComments", new { blogPostId , skip = 0, take = 5});}
   @if (loginStatusModel.IsLoggedIn)
   {
-    @Html.Partial("/Views/Partials/_BlogPostAddComment.cshtml", new BlogPostCommentViewModel {BlogPostId = blogPostId})
+    Html.RenderAction("Index", "BlogPostAddComment", new { blogPostId });
   }
 </div>
