@@ -1,0 +1,29 @@
+﻿<div ng-controller="WNTI.HeroVideoGridEditor.Controller">
+    
+  <div style="padding:20px;">
+    <div class="option text-center">
+      <span><strong>Hero Video</strong></span>
+      <div class="image" ng-if="video">
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" style="width: 100%;max-height: 400px;">
+          <source src="{{videoUrl}}" type="video/mp4">
+        </video>
+        <br/>
+        <a href="#" class="btn btn-primary" style="margin: 10px 0;" ng-click="selectVideo()" prevent-default>Select Video</a>
+      </div>
+      <div class="image" ng-if="!video">
+        <a href="#" class="usky-editor-placeholder" ng-click="selectVideo()" prevent-default>
+          <div style="padding-top: 40px; text-align: center;">
+            <i class="icon icon-picture" style="font-size: 22px;"></i><br />
+            Select video
+          </div>
+        </a>
+      </div>
+    </div>
+    
+    <label class="option w-100" style="min-height:200px;">
+      <span><strong>Hero Text</strong></span><br />
+      <span unique-id="control.$uniqueId" value="control.value.heroText" grid-rte configuration="rteconfig"></span>
+    </label>
+  </div>
+
+</div>

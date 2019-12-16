@@ -1,0 +1,27 @@
+﻿{
+  "gridEditors": [
+    {
+      "name": "Hero Video",
+      "alias": "HeroVideo",
+      "view": "/App_Plugins/HeroVideoGridEditor/views/editor.html",
+      "icon": "icon-pictures-alt-2",
+      "render": "/Views/Partials/Grid/Editors/HeroVideo.cshtml",
+      "config": {
+        "heroImage": {
+          "mode": "required",
+          "placeholder": "Select an image"
+        },
+        "heroText": {
+          "mode": "optional",
+          "placeholder": "Enter the hero text"
+        }
+      }
+    }
+  ],
+  "javascript": [
+    "/App_Plugins/HeroVideoGridEditor/scripts/editor.controller.js"
+  ],
+  "css": [
+    "/App_Plugins/HeroVideoGridEditor/styles/default.css"
+  ]
+}

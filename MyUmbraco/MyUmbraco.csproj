@@ -2489,6 +2489,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\Dashboards\" />
+    <Folder Include="App_Code\Repositories\" />
     <Folder Include="App_Themes\MyUmbraco\fonts\" />
     <Folder Include="App_Themes\MyUmbraco\svg\" />
     <Folder Include="Views\ContactForm\" />
